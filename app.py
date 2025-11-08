@@ -3,12 +3,12 @@ import os
 from pdf2docx import Converter # type: ignore
 
 # --- App Title ---
-st.set_page_config(page_title="PDF 📝 ➜ Word Converter 📎", page_icon="🧌", layout="centered") # create streamlit app
-st.title("🧌 Ogre Studios PDF 📝 ➜ Word Converter 📎") # app title
-st.write("🧌 Convert your PDF files into editable Word (.docx) documents instantly.") # app description
+st.set_page_config(page_title="PDF 📝 ➜ Word Converter 📎", page_icon="pdf_converter.ico", layout="centered") # create streamlit app
+st.title("The Office PDF 📝 ➜ Word Converter 📎") # app title
+st.write("Convert your PDF files into editable Word (.docx) documents instantly.") # app description
 
 # --- File Upload ---
-uploaded_file = st.file_uploader("🧌 Upload a PDF file", type=["pdf"]) # file uploader for pdf files
+uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"]) # file uploader for pdf files
 
 if uploaded_file:
     input_path = os.path.join("input", uploaded_file.name) # path for uploaded file
@@ -21,12 +21,12 @@ if uploaded_file:
 
     output_file = os.path.join(output_dir, uploaded_file.name.replace(".pdf", ".docx")) # output file path
 
-    if st.button("🧌 Convert to Word"): # convert button
-        with st.spinner("🧌 Converting... Please wait ⏳"): # show spinner while converting
+    if st.button("Convert to Word"): # convert button
+        with st.spinner("Converting... Please wait ⏳"): # show spinner while converting
             converter = Converter(input_path) # initialise converter
             converter.convert(output_file, start=0, end=None) # convert pdf to docx
             converter.close() # close converter
-        st.success("🧌 ✅ Conversion complete!") # show success message
+        st.success("✅ Conversion complete!") # show success message
 
         with open(output_file, "rb") as f: # open converted file
             st.download_button( 
